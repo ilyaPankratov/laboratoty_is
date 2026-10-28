@@ -1,0 +1,18 @@
+@startuml TaskFlow_Pankratov_Lab2
+interface ITaskRepository
+interface IPriorityStrategy
+class TaskService
+class InMemoryTaskRepository
+class SQLiteTaskRepository
+class EffortFirstStrategy
+class WorkLog
+class make_repository <<factory>>
+TaskService --> ITaskRepository
+TaskService --> IPriorityStrategy
+TaskService ..> WorkLog : watch
+InMemoryTaskRepository ..|> ITaskRepository
+SQLiteTaskRepository ..|> ITaskRepository
+EffortFirstStrategy ..|> IPriorityStrategy
+make_repository ..> InMemoryTaskRepository
+make_repository ..> SQLiteTaskRepository
+@enduml
